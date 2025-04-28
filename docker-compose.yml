@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend/database.db:/app/database.db
+    ports:
+      - "8000:8000"
+    environment:
+      - TZ=Europe/Moscow
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:5173"
+    environment:
+      - TZ=Europe/Moscow
+    command: npm run dev
+
+  bot:
+    build: ./bot
+    environment:
+      - BOT_TOKEN=6602514727:AAF7d2iEQmH5YbynKSZH-lPA9-BDUNmjphY
+      - API_URL=http://backend:8000
+    depends_on:
+      - backend
