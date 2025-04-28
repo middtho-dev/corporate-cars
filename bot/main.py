@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher
 from handlers import router
 import os
 
-BOT_TOKEN = os.getenv("6602514727:AAF7d2iEQmH5YbynKSZH-lPA9-BDUNmjphY")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
